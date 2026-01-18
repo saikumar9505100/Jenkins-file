@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/USERNAME/jenkins-demo.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Build started...'
+                sh 'chmod +x app.sh'
+                sh './app.sh'
+            }
+        }
+
+        stage('Success') {
+            steps {
+                echo 'Build completed successfully!'
+            }
+        }
+    }
+}
